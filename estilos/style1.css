@@ -1,0 +1,71 @@
+
+
+
+#mapa {
+    width: 100%;
+    min-height: 700px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mapa svg {
+    width: 80%;
+    max-width: 900px;
+    height: auto;
+}
+
+
+
+
+#eventos_prin {
+    padding: 40px 20px;
+}
+
+#tarjeta-comuna {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+#nombre-comuna {
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+#info-comuna {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.contenido-comuna {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.bloque-info {
+    flex: 1;
+    min-width: 180px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f4f4f4;
+}
+
+.bloque-info h3 {
+    margin-top: 0;
+}
+
+#ver-mas {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+}
