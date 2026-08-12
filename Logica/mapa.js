@@ -232,6 +232,8 @@ function iniciarMapa() {
                     "Próximamente...";
             }
 
+
+            // BOTÓN VER MÁS
             document.getElementById("ver-mas").onclick = () => {
                 window.location.href = `comuna.html?comuna=${comuna.id}`;
             };
