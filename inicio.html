@@ -7,26 +7,77 @@
     <link rel="stylesheet" href="estilos/style1.css">
 </head>
 <body>
+    <header id="navbar">
+        <div class="logo">PARCHATE</div>
+
+        <nav class="nav-links">
+
+            <a href="#hero">Inicio</a>
+            <a href="#mapa">Mapa</a>
+            <a href="#eventos-destacados">Eventos</a>
+
+        </nav>
+
+        <div class="auth-section">
+
+            <!-- Botones iniciales -->
+            <div class="botones-auth" id="botones-auth">
+                <a href="#" class="btn-login">Log In</a>
+                <a href="#" class="btn-signup">Sign Up</a>
+
+            </div>
+
+            <!-- Menú con icono (oculto por ahora) -->
+            <div class="usuario-menu" id="usuario-menu" style="display: none;">
+
+                <button id="btn-perfil" class="btn-perfil">👤</button>
+
+                <div class="dropdown-contenido" id="dropdown-perfil">
+                    <a href="#">Mi Perfil</a>
+                    <a href="#">Mis Guardados</a>
+                    <a href="#">Cerrar Sesión</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
 
     <section id="hero">
+
+        <div class="hero-contenido">
+
+            <h1>PARCHATE</h1>
+
+            <p>
+                Descubre qué hacer hoy en Medellín.
+            </p>
+
+            <a href="#mapa" class="boton-explorar">
+                Explorar Medellín ↓
+            </a>
+
+        </div>
 
     </section>
 
     <section id="mapa">
-
+        <div class="mapa-encabezado">
+            <h2>Explora las 16 Comunas</h2>
+            <p>Haz clic en una comuna para descubrir qué hacer hoy</p>
+        </div>
     </section>
 
     <section id="eventos_prin">
 
-    <div id="tarjeta-comuna">
+        <div id="tarjeta-comuna">
 
-        <h2 id="nombre-comuna">Selecciona una comuna</h2>
+            <h2 id="nombre-comuna">Selecciona una comuna</h2>
 
-        <p id="info-comuna">
+            <p id="info-comuna">
             Haz clic en una comuna del mapa para descubrir qué puedes hacer allí.
-        </p>
+            </p>
 
-        <div class="contenido-comuna">
+            <div class="contenido-comuna">
 
             <div class="bloque-info">
                 <h3>📅 Eventos</h3>
@@ -43,16 +94,86 @@
                 <p id="actividades-comuna">Próximamente...</p>
             </div>
 
+            </div>
+
+            <button id="ver-mas">Ver más</button>
+
         </div>
 
-        <button id="ver-mas">Ver más</button>
+    </section>
 
+    <section id="eventos-destacados">
+
+        <h2>🔥 Eventos Destacados en Medellín</h2>
+
+        <div class="grid-destacados">
+
+            <div class="tarjeta-evento">
+                <span class="etiqueta">Concierto</span>
+                <h3>Festival de Jazz en el Parque</h3>
+                <p>📍 Parque de los Deseos — Gratis</p>
+            </div>
+
+            <div class="tarjeta-evento">
+                <span class="etiqueta">Deporte</span>
+                <h3>Torneo 3x3 Baloncesto</h3>
+                <p>📍 Unidad Deportiva Atanasio Girardot</p>
+            </div>
+
+            <div class="tarjeta-evento">
+                <span class="etiqueta">Cultura</span>
+                <h3>Feria de Arte Callejero</h3>
+                <p>📍 Comuna 13 — Entrada libre</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO -->
+    <section id="contacto">
+        <h2>📩 Contáctanos</h2>
+        <p>¿Tienes dudas, sugerencias o quieres publicar tu evento en Parchate?</p>
+        <form id="form-contacto" class="form-contacto">
+            <input type="text" placeholder="Tu nombre" required>
+            <input type="email" placeholder="Tu correo electrónico" required>
+            <textarea placeholder="Escribe tu mensaje..." rows="4" required></textarea>
+            <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <!-- WIDGET FLOTANTE DE IA (MAQUETA BASE) -->
+    <div id="ai-widget-container">
+        <button id="ai-widget-btn" class="ai-btn" title="Pregúntale a Parchate IA">
+            <span>🤖</span>
+        </button>
+        <div id="ai-chat-box" class="ai-chat-box oculto">
+            <div class="ai-chat-header">
+                <div class="ai-titulo">
+                    <span>🤖</span>
+                    <h4>Parchate IA</h4>
+                </div>
+                <button id="ai-chat-close">&times;</button>
+            </div>
+            <div class="ai-chat-body">
+                <p class="ai-mensaje-bienvenida">
+                    ¡Hola! 👋 Soy el asistente inteligente de Parchate. Pronto me podrás preguntar qué hacer en Medellín según tus gustos.
+                </p>
+            </div>
+            <div class="ai-chat-footer">
+                <input type="text" placeholder="Próximamente..." disabled />
+                <button disabled>Enviar</button>
+            </div>
+        </div>
     </div>
 
-</section>
+    <!-- PIE DE PÁGINA (FOOTER) -->
+    <footer id="footer">
+        <p>© 2026 PARCHATE — Explora Medellín comuna por comuna 🚀</p>
+    </footer>
 
+    
     <script src="Logica/mapa.js"></script>
-
 </body>
 
 </html>

@@ -5,7 +5,7 @@ let comunaSeleccionada = null;
 fetch("imagenes/medellin.svg")
     .then(respuesta => respuesta.text())
     .then(svg => {
-        contenedorMapa.innerHTML = svg;
+        contenedorMapa.innerHTML += svg;
         iniciarMapa();
     });
 
@@ -95,10 +95,10 @@ function iniciarMapa() {
 
         Laureles_Estadio: {
             nombre: "Laureles-Estadio",
-            descripcion: "Comuna ubicada en la zona centrooccidental de Medellín.",
-            eventos: "Próximamente tendremos eventos de Laureles-Estadio.",
-            lugares: "Próximamente tendremos lugares de Laureles-Estadio.",
-            actividades: "Próximamente tendremos actividades de Laureles-Estadio."
+            descripcion: "Corazón deportivo y de bulevares tranquilos.",
+            eventos: "Torneo relámpago de básquetbol en la Unidad Deportiva Atanasio Girardot",
+            lugares: "Primer y Segundo Parque de Laureles, Carrera 70",
+            actividades: "Ciclovía dominguera y entrenamientos al aire libre"
         },
 
         La_america: {
@@ -111,10 +111,10 @@ function iniciarMapa() {
 
         San_javier: {
             nombre: "San Javier",
-            descripcion: "Comuna ubicada en la zona occidental de Medellín.",
-            eventos: "Próximamente tendremos eventos de San Javier.",
-            lugares: "Próximamente tendremos lugares de San Javier.",
-            actividades: "Próximamente tendremos actividades de San Javier."
+            descripcion: "Historia, transformación cultural y arte urbano.",
+            eventos: "Show de Breakdance y Hip Hop en vivo",
+            lugares: "Graffitour Comuna 13, Parque Biblioteca San Javier",
+            actividades: "Recorrido guiado de arte urbano y gastronomía local"
         },
 
         Belen: {
@@ -135,10 +135,10 @@ function iniciarMapa() {
 
         El_poblado: {
             nombre: "El Poblado",
-            descripcion: "Comuna ubicada en la zona suroriental de Medellín.",
-            eventos: "Próximamente tendremos eventos de El Poblado.",
-            lugares: "Próximamente tendremos lugares de El Poblado.",
-            actividades: "Próximamente tendremos actividades de El Poblado."
+            descripcion: "Zona gastronómica, nocturna y de parques al suroriente.",
+            eventos: "Concierto acústico en Provenza (Hoy 8:00 PM)",
+            lugares: "Parque Lleras, Mercado del Río, Parque El Virrey",
+            actividades: "Ruta del café y tour gastronómico"
         }
     };
 
@@ -237,6 +237,10 @@ function iniciarMapa() {
             document.getElementById("ver-mas").onclick = () => {
                 window.location.href = `comuna.html?comuna=${comuna.id}`;
             };
+
+
+            // Desplazar automáticamente hacia la tarjeta
+            document.getElementById("tarjeta-comuna").scrollIntoView({ behavior: "smooth" });
         });
 
     });
@@ -261,3 +265,71 @@ document.addEventListener("click", (evento) => {
     }
 
 });
+
+
+// Lógica para el menú desplegable del perfil
+const btnPerfil = document.getElementById("btn-perfil");
+const dropdownPerfil = document.getElementById("dropdown-perfil");
+
+if (btnPerfil && dropdownPerfil) {
+    btnPerfil.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dropdownPerfil.classList.toggle("activo");
+    });
+
+    document.addEventListener("click", () => {
+        dropdownPerfil.classList.remove("activo");
+    });
+}
+
+
+// Ocultar Navbar 
+let ultimoScroll = 0;
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+    let scrollActual = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Si baja más de 80px, oculta la barra. Si sube, la muestra.
+    if (scrollActual > ultimoScroll && scrollActual > 80) {
+        navbar.classList.add("nav-oculto");
+    } else {
+        navbar.classList.remove("nav-oculto");
+    }
+    
+    ultimoScroll = scrollActual <= 0 ? 0 : scrollActual;
+});
+
+// Mostrar la barra si el usuario mueve el cursor a la parte superior de la pantalla
+document.addEventListener("mousemove", (e) => {
+    if (e.clientY <= 50) {
+        navbar.classList.remove("nav-oculto");
+    }
+});
+
+
+// Abrir y cerrar el widget de IA
+const aiBtn = document.getElementById("ai-widget-btn");
+const aiChatBox = document.getElementById("ai-chat-box");
+const aiCloseBtn = document.getElementById("ai-chat-close");
+
+if (aiBtn && aiChatBox && aiCloseBtn) {
+    aiBtn.addEventListener("click", () => {
+        aiChatBox.classList.toggle("oculto");
+    });
+
+    aiCloseBtn.addEventListener("click", () => {
+        aiChatBox.classList.add("oculto");
+    });
+}
+
+// Manejo del formulario de contacto
+const formContacto = document.getElementById("form-contacto");
+
+if (formContacto) {
+    formContacto.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("¡Gracias por escribirnos! Tu mensaje ha sido enviado correctamente.");
+        formContacto.reset();
+    });
+}

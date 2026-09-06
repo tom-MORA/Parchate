@@ -1,31 +1,232 @@
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
 
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
 
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
 
+/* =========================
+   BARRA DE NAVEGACIÓN (NAVBAR)
+========================= */
 
-
-
-
-
-#mapa {
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    min-height: 700px;
-
+    height: 70px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+#navbar.nav-oculto {
+    transform: translateY(-100%);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #2563eb;
+}
+
+.nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+.auth-section {
+    position: relative;
+    display: flex;
     align-items: center;
 }
 
-#mapa svg {
-    width: 80%;
-    max-width: 900px;
-    height: auto;
+.btn-login {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+
+.btn-signup {
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-signup:hover {
+    background: #1d4ed8;
 }
 
 
+/* MENÚ DE PERFIL Y DROPDOWN */
 
+.btn-perfil {
+    background: #e2e8f0;
+    border: none;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-contenido {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: white;
+    min-width: 160px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.dropdown-contenido a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+}
+
+.dropdown-contenido a:hover {
+    background: #f4f6f8;
+    color: #2563eb;
+}
+
+.dropdown-contenido.activo {
+    display: flex;
+}
+
+
+/* =========================
+   INICIO / HERO
+========================= */
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #f4f6f8;
+    scroll-snap-align: start;
+}
+
+.hero-contenido h1 {
+    font-size: 72px;
+    margin: 0;
+    letter-spacing: 5px;
+}
+
+.hero-contenido p {
+    font-size: 24px;
+    margin: 20px 0 35px;
+    color: #555;
+}
+
+.boton-explorar {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.boton-explorar:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   SECCIÓN MAPA
+========================= */
+
+#mapa {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    padding-top: 80px;
+}
+
+#mapa svg {
+    width: 100%;
+    max-width: 900px;
+    max-height: 92vh;
+    height: auto;
+    margin-top: -25px; /* Eleva el dibujo para pegarlo más al título */
+}
+
+.mapa-encabezado {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.mapa-encabezado h2 {
+    font-size: 28px;
+    margin: 0;
+    color: #1e293b;
+}
+
+.mapa-encabezado p {
+    font-size: 15px;
+    color: #64748b;
+    margin: 2px 0 0;
+}
+
+
+/* =========================
+   TARJETA DE COMUNA / EVENTOS
+========================= */
 
 #eventos_prin {
     padding: 40px 20px;
+    scroll-snap-align: start;
 }
 
 #tarjeta-comuna {
@@ -73,9 +274,18 @@
     cursor: pointer;
     background: #2563eb;
     color: white;
+    font-weight: bold;
+    transition: background 0.3s ease;
 }
 
-/* BOTÓN VOLVER AL MAPA */
+#ver-mas:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   BOTÓN VOLVER AL MAPA
+========================= */
 
 #volver-mapa {
     display: inline-block;
@@ -86,6 +296,7 @@
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
+    transition: background 0.3s ease;
 }
 
 #volver-mapa:hover {
@@ -93,66 +304,247 @@
 }
 
 
+/* =========================
+   EVENTOS DESTACADOS
+========================= */
 
+#eventos-destacados {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    scroll-snap-align: start;
+}
 
+#eventos-destacados h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #1e293b;
+}
 
+.grid-destacados {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.tarjeta-evento {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    flex: 1;
+    min-width: 250px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
 
+.tarjeta-evento .etiqueta {
+    background: #2563eb;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
 
+.tarjeta-evento h3 {
+    margin: 15px 0 10px;
+    font-size: 20px;
+}
 
-
-
-
-
-
-
-
-
-
+.tarjeta-evento p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
 
 
 /* =========================
-        PÁGINA DE COMUNA
+   WIDGET FLOTANTE DE IA
 ========================= */
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    color: #222;
+#ai-widget-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
 }
 
-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 50px 25px;
+.ai-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
 }
 
-#nombre-comuna {
-    font-size: 48px;
-    margin-bottom: 10px;
+.ai-btn:hover {
+    transform: scale(1.08);
 }
 
-#descripcion-comuna {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 40px;
-}
-
-main section {
+.ai-chat-box {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 320px;
+    height: 380px;
     background: white;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-main section h2 {
-    margin-top: 0;
-    font-size: 25px;
+.ai-chat-box.oculto {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
 }
 
-main section div {
-    color: #555;
-    font-size: 17px;
+.ai-chat-header {
+    background: #2563eb;
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-titulo h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+#ai-chat-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.ai-chat-body {
+    flex: 1;
+    padding: 15px;
+    background: #f8fafc;
+    overflow-y: auto;
+}
+
+.ai-mensaje-bienvenida {
+    background: #e2e8f0;
+    color: #1e293b;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.ai-chat-footer {
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.ai-chat-footer input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.ai-chat-footer button {
+    background: #cbd5e1;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* =========================
+   SECCIÓN CONTACTO & FOOTER
+========================= */
+
+#contacto {
+    padding: 60px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#contacto h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #1e293b;
+}
+
+#contacto p {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+.form-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-contacto input,
+.form-contacto textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-contacto input:focus,
+.form-contacto textarea:focus {
+    border-color: #2563eb;
+}
+
+.btn-enviar {
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-enviar:hover {
+    background: #1d4ed8;
+}
+
+#footer {
+    background: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 25px 20px;
+    font-size: 14px;
 }
