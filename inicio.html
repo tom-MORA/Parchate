@@ -3,137 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Medellín</title>
+    <title>PÁRCHATE — Descubre Medellín</title>
     <link rel="stylesheet" href="estilos/style1.css">
 </head>
 <body>
-    <header id="navbar">
-        <div class="logo">PARCHATE</div>
+    
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav id="navbar">
+        <div class="logo">PÁRCHATE</div>
 
-        <nav class="nav-links">
+        <button id="hamburger-menu" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
+        <div class="nav-links" id="nav-links">
             <a href="#hero">Inicio</a>
             <a href="#mapa">Mapa</a>
             <a href="#eventos-destacados">Eventos</a>
+            <a href="#contacto">Contacto</a>
 
-        </nav>
-
-        <div class="auth-section">
-
-            <!-- Botones iniciales -->
-            <div class="botones-auth" id="botones-auth">
-                <a href="#" class="btn-login">Log In</a>
-                <a href="#" class="btn-signup">Sign Up</a>
-
-            </div>
-
-            <!-- Menú con icono (oculto por ahora) -->
-            <div class="usuario-menu" id="usuario-menu" style="display: none;">
-
-                <button id="btn-perfil" class="btn-perfil">👤</button>
-
-                <div class="dropdown-contenido" id="dropdown-perfil">
-                    <a href="#">Mi Perfil</a>
-                    <a href="#">Mis Guardados</a>
-                    <a href="#">Cerrar Sesión</a>
+            <!-- MÓDULO DE AUTENTICACIÓN DENTRO DEL NAV EN MÓVIL -->
+            <div class="auth-section">
+                <!-- Estado 1: Sin Sesión (Predeterminado) -->
+                <div class="botones-auth" id="botones-auth">
+                    <a href="#login" class="btn-login">Log In</a>
+                    <a href="#signup" class="btn-signup">Sign Up</a>
                 </div>
 
+                <!-- Estado 2: Con Sesión (Oculto) -->
+                <div class="usuario-menu" id="usuario-menu" style="display: none;">
+                    <button id="btn-perfil" class="btn-perfil" aria-label="Menú de Usuario">
+                        <span class="user-icon">👤</span>
+                    </button>
+                    <div class="dropdown-contenido" id="dropdown-perfil">
+                        <a href="#perfil">Mi Perfil</a>
+                        <a href="#guardados">Mis Boletas / Guardados</a>
+                        <a href="#logout" class="btn-logout">Cerrar Sesión</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </header>
+        </div>  
+    </nav>
 
+    <!-- HERO -->
     <section id="hero">
-
         <div class="hero-contenido">
-
-            <h1>PARCHATE</h1>
-
-            <p>
-                Descubre qué hacer hoy en Medellín.
-            </p>
-
-            <a href="#mapa" class="boton-explorar">
-                Explorar Medellín ↓
-            </a>
-
+            <h1>PÁRCHATE</h1>
+            <p>Descubre qué hacer hoy en Medellín.</p>
+            <a href="#mapa" class="boton-explorar">Explorar Medellín ↓</a>
         </div>
-
     </section>
 
+    <!-- SECCIÓN MAPA / SELECTOR -->
     <section id="mapa">
         <div class="mapa-encabezado">
             <h2>Explora las 16 Comunas</h2>
-            <p>Haz clic en una comuna para descubrir qué hacer hoy</p>
+            <p>Selecciona una comuna para descubrir eventos y lugares</p>
         </div>
+
+        <!-- Vista Móvil: Selector desplegable -->
+        <div class="selector-comuna-movil">
+            <label for="select-comuna">Elige tu comuna:</label>
+            <select id="select-comuna">
+                <option value="" disabled selected>-- Selecciona una comuna --</option>
+                <option value="Popular">1. Popular</option>
+                <option value="Santa_Cruz">2. Santa Cruz</option>
+                <option value="Manrique">3. Manrique</option>
+                <option value="Aranjuez">4. Aranjuez</option>
+                <option value="Castilla">5. Castilla</option>
+                <option value="Doce_de_octubre">6. Doce de Octubre</option>
+                <option value="Robledo">7. Robledo</option>
+                <option value="Villa_hermosa">8. Villa Hermosa</option>
+                <option value="Buenos_aires">9. Buenos Aires</option>
+                <option value="La_candelaria">10. La Candelaria</option>
+                <option value="Laureles_Estadio">11. Laureles-Estadio</option>
+                <option value="La_america">12. La América</option>
+                <option value="San_javier">13. San Javier</option>
+                <option value="Belen">14. Belén</option>
+                <option value="Guayabal">15. Guayabal</option>
+                <option value="El_poblado">16. El Poblado</option>
+            </select>
+        </div>
+
+        <!-- Vista Desktop: Mapa SVG cargado dinámicamente -->
+        <div id="contenedor-svg-mapa" class="contenedor-svg-mapa"></div>
     </section>
 
-    <section id="eventos_prin">
-
+    <!-- TARJETA DE VISTA PREVIA -->
+    <section id="eventos_prin" style="display: none;">
         <div id="tarjeta-comuna">
-
             <h2 id="nombre-comuna">Selecciona una comuna</h2>
-
-            <p id="info-comuna">
-            Haz clic en una comuna del mapa para descubrir qué puedes hacer allí.
-            </p>
+            <p id="info-comuna">Haz clic en una comuna para descubrir actividades.</p>
 
             <div class="contenido-comuna">
-
-            <div class="bloque-info">
-                <h3>📅 Eventos</h3>
-                <p id="eventos-comuna">Próximamente...</p>
+                <div class="bloque-info">
+                    <h3>📅 Eventos</h3>
+                    <p id="eventos-comuna">Próximamente...</p>
+                </div>
+                <div class="bloque-info">
+                    <h3>📍 Lugares</h3>
+                    <p id="lugares-comuna">Próximamente...</p>
+                </div>
+                <div class="bloque-info">
+                    <h3>🎯 Actividades</h3>
+                    <p id="actividades-comuna">Próximamente...</p>
+                </div>
             </div>
 
-            <div class="bloque-info">
-                <h3>📍 Lugares</h3>
-                <p id="lugares-comuna">Próximamente...</p>
-            </div>
-
-            <div class="bloque-info">
-                <h3>🎯 Actividades</h3>
-                <p id="actividades-comuna">Próximamente...</p>
-            </div>
-
-            </div>
-
-            <button id="ver-mas">Ver más</button>
-
+            <button id="ver-mas">Ver más detalles y boletas</button>
         </div>
-
     </section>
 
+    <!-- EVENTOS DESTACADOS / TICKETERA -->
     <section id="eventos-destacados">
-
-        <h2>🔥 Eventos Destacados en Medellín</h2>
-
+        <h2>🔥 Eventos Destacados / Ticketera</h2>
         <div class="grid-destacados">
-
             <div class="tarjeta-evento">
                 <span class="etiqueta">Concierto</span>
                 <h3>Festival de Jazz en el Parque</h3>
                 <p>📍 Parque de los Deseos — Gratis</p>
+                <button class="btn-reserva">Reservar Boleta</button>
             </div>
-
             <div class="tarjeta-evento">
                 <span class="etiqueta">Deporte</span>
                 <h3>Torneo 3x3 Baloncesto</h3>
                 <p>📍 Unidad Deportiva Atanasio Girardot</p>
+                <button class="btn-reserva">Reservar Boleta</button>
             </div>
-
             <div class="tarjeta-evento">
                 <span class="etiqueta">Cultura</span>
                 <h3>Feria de Arte Callejero</h3>
                 <p>📍 Comuna 13 — Entrada libre</p>
+                <button class="btn-reserva">Reservar Boleta</button>
             </div>
-
         </div>
-
     </section>
 
-    <!-- SECCIÓN DE CONTACTO -->
+    <!-- CONTACTO -->
     <section id="contacto">
         <h2>📩 Contáctanos</h2>
-        <p>¿Tienes dudas, sugerencias o quieres publicar tu evento en Parchate?</p>
+        <p>¿Quieres publicar tu evento o tienes dudas sobre PÁRCHATE?</p>
         <form id="form-contacto" class="form-contacto">
             <input type="text" placeholder="Tu nombre" required>
             <input type="email" placeholder="Tu correo electrónico" required>
@@ -142,7 +153,7 @@
         </form>
     </section>
 
-    <!-- WIDGET FLOTANTE DE IA (MAQUETA BASE) -->
+    <!-- WIDGET IA -->
     <div id="ai-widget-container">
         <button id="ai-widget-btn" class="ai-btn" title="Pregúntale a Parchate IA">
             <span>🤖</span>
@@ -157,24 +168,21 @@
             </div>
             <div class="ai-chat-body">
                 <p class="ai-mensaje-bienvenida">
-                    ¡Hola! 👋 Soy el asistente inteligente de Parchate. Pronto me podrás preguntar qué hacer en Medellín según tus gustos.
+                    ¡Hola! 👋 Soy el asistente de PÁRCHATE. Pregúntame sobre eventos y recomendaciones en Medellín.
                 </p>
             </div>
             <div class="ai-chat-footer">
-                <input type="text" placeholder="Próximamente..." disabled />
-                <button disabled>Enviar</button>
+                <input type="text" id="ai-input" placeholder="Escribe una pregunta..." />
+                <button id="ai-send-btn">Enviar</button>
             </div>
         </div>
     </div>
 
-    <!-- PIE DE PÁGINA (FOOTER) -->
     <footer id="footer">
         <p>© 2026 PARCHATE — Explora Medellín comuna por comuna 🚀</p>
     </footer>
 
-    
-   <script src="Logica/datosComunas.js"></script>
+    <script src="Logica/datosComunas.js"></script>
     <script src="Logica/mapa.js"></script>
-
 </body>
 </html>

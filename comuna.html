@@ -4,46 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Parchate - Comuna</title>
-
     <link rel="stylesheet" href="estilos/style1.css">
 </head>
 
 <body>
 
-    <main>
+    <nav id="navbar">
+        <div class="logo">PÁRCHATE</div>
 
+        <button id="hamburger-menu" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+            <a href="inicio.html">Inicio</a>
+            <a href="inicio.html#mapa">Mapa</a>
+            <a href="inicio.html#contacto">Contacto</a>
+            <a href="#login" class="btn-signup">Iniciar Sesión</a>
+        </div>
+    </nav>
+
+    <main class="contenedor-comuna-pagina">
         <a href="inicio.html" id="volver-mapa">← Volver al mapa</a>
 
-        <h1 id="nombre-comuna">Comuna</h1>
+        <div class="tarjeta-detalle-comuna">
+            <h1 id="nombre-comuna">Cargando...</h1>
+            <p id="descripcion-comuna" class="descripcion-destacada">
+                Información de la comuna.
+            </p>
 
-        <p id="descripcion-comuna">
-            Información de la comuna.
-        </p>
+            <div class="grid-comuna-info">
+                <section class="bloque-info">
+                    <h2>📅 Eventos</h2>
+                    <div id="eventos-comuna">Próximamente...</div>
+                </section>
 
-        <section>
-            <h2>📅 Eventos</h2>
-            <div id="eventos-comuna">
-                Próximamente...
+                <section class="bloque-info">
+                    <h2>📍 Lugares</h2>
+                    <div id="lugares-comuna">Próximamente...</div>
+                </section>
+
+                <section class="bloque-info">
+                    <h2>🎯 Actividades</h2>
+                    <div id="actividades-comuna">Próximamente...</div>
+                </section>
             </div>
-        </section>
-
-        <section>
-            <h2>📍 Lugares</h2>
-            <div id="lugares-comuna">
-                Próximamente...
-            </div>
-        </section>
-
-        <section>
-            <h2>🎯 Actividades</h2>
-            <div id="actividades-comuna">
-                Próximamente...
-            </div>
-        </section>
-
+        </div>
     </main>
+
+    <footer id="footer">
+        <p>© 2026 PARCHATE — Explora Medellín comuna por comuna 🚀</p>
+    </footer>
 
     <script src="Logica/datosComunas.js"></script>
     <script src="Logica/comuna.js"></script>
