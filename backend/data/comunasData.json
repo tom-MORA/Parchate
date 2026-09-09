@@ -1,0 +1,114 @@
+{
+  "Popular": {
+    "nombre": "Popular",
+    "descripcion": "Comuna ubicada en la zona nororiental de Medellín.",
+    "eventos": "Encuentro comunitario de arte urbano en el Metrocable",
+    "lugares": "UVA La Cordillera, Estación Metrocable Santo Domingo",
+    "actividades": "Rutas panorámicas, talleres de fotografía y lectura al aire libre"
+  },
+  "Santa_Cruz": {
+    "nombre": "Santa Cruz",
+    "descripcion": "Comuna ubicada en la zona nororiental a orillas del río Medellín.",
+    "eventos": "Torneo de fútbol relámpago de la comunidad",
+    "lugares": "Cancha Sinaloa, Paseo del Río",
+    "actividades": "Jornadas deportivas comunitarias y comparsas culturales"
+  },
+  "Manrique": {
+    "nombre": "Manrique",
+    "descripcion": "Eje cultural con tradición tanguera en la Carrera 45.",
+    "eventos": "Noche de Tango y Milonga en la 45",
+    "lugares": "Casa Cultural Gardeliana, Parque de Manrique",
+    "actividades": "Recorridos históricos de tango y muestras gastronómicas"
+  },
+  "Aranjuez": {
+    "nombre": "Aranjuez",
+    "descripcion": "Zona con gran riqueza patrimonial, museos y naturaleza.",
+    "eventos": "Proyección de cine al aire libre en el Museo Pedro Nel Gómez",
+    "lugares": "Museo Casa Pedro Nel Gómez, Parque de Aranjuez, Comfama Aranjuez",
+    "actividades": "Visitas guiadas de arte público y talleres artesanales"
+  },
+  "Castilla": {
+    "nombre": "Castilla",
+    "descripcion": "Comuna gastronómica y cultural de la zona noroccidental.",
+    "eventos": "Festival de bandas locales y música urbana",
+    "lugares": "Bulevar de la 68, Parque Juanes de la Paz",
+    "actividades": "Ruta gastronómica nocturna y deportes extremos en skatepark"
+  },
+  "Doce_de_octubre": {
+    "nombre": "Doce de Octubre",
+    "descripcion": "Mirador natural con gran vista sobre el valle.",
+    "eventos": "Feria artesanal y emprendimiento juvenil",
+    "lugares": "Mirador del Doce, UVA Sin Fronteras",
+    "actividades": "Caminatas hacia los miradores y ferias de emprendedores"
+  },
+  "Robledo": {
+    "nombre": "Robledo",
+    "descripcion": "Zona universitaria y ecológica del occidente.",
+    "eventos": "Jornada de siembra ecológica y reforestación",
+    "lugares": "Cerro El Volador, Campus Universitarios",
+    "actividades": "Avistamiento de aves, senderismo y picnics universitarios"
+  },
+  "Villa_hermosa": {
+    "nombre": "Villa Hermosa",
+    "descripcion": "Balcón del centro-oriente medellinense.",
+    "eventos": "Taller de teatro comunitario",
+    "lugares": "Parque de Villa Hermosa, Mansión Monasterio",
+    "actividades": "Caminatas urbanas por los miradores y encuentros de teatro"
+  },
+  "Buenos_aires": {
+    "nombre": "Buenos Aires",
+    "descripcion": "Eje de movilidad sostenible con el Tranvía de Ayacucho.",
+    "eventos": "Feria de diseño independiente y mercado verde",
+    "lugares": "Corredor del Tranvía de Ayacucho, UVA La Imaginación",
+    "actividades": "Recorrido patrimonial en tranvía y ruta de murales artísticos"
+  },
+  "La_candelaria": {
+    "nombre": "La Candelaria",
+    "descripcion": "El corazón histórico, comercial y cultural de Medellín.",
+    "eventos": "Concierto de la Orquesta Filarmónica en la Plaza Botero",
+    "lugares": "Plaza Botero, Museo de Antioquia, Teatro Pablo Tobón Uribe",
+    "actividades": "Ruta de museos, recorridos por iglesias históricas y teatro"
+  },
+  "Laureles_Estadio": {
+    "nombre": "Laureles-Estadio",
+    "descripcion": "Corazón deportivo y de bulevares tranquilos.",
+    "eventos": "Torneo relámpago de básquetbol en la Unidad Deportiva Atanasio Girardot",
+    "lugares": "Primer y Segundo Parque de Laureles, Carrera 70",
+    "actividades": "Ciclovía dominguera y entrenamientos al aire libre"
+  },
+  "La_america": {
+    "nombre": "La América",
+    "descripcion": "Tradición residencial y parques tradicionales.",
+    "eventos": "Muestra de baile para adultos mayores y jóvenes",
+    "lugares": "Parque de La América, Iglesia de Nuestra Señora de la Candelaria",
+    "actividades": "Feria de emprendimiento barrial y tertulias culturales"
+  },
+  "San_javier": {
+    "nombre": "San Javier",
+    "descripcion": "Historia, transformación cultural y arte urbano.",
+    "eventos": "Show de Breakdance y Hip Hop en vivo",
+    "lugares": "Graffitour Comuna 13, Parque Biblioteca San Javier",
+    "actividades": "Recorrido guiado de arte urbano y gastronomía local"
+  },
+  "Belen": {
+    "nombre": "Belén",
+    "descripcion": "Una de las comunas más tradicionales y extensas de la ciudad.",
+    "eventos": "Exposición de autos clásicos y actividades familiares",
+    "lugares": "Parque de Belén, Pueblito Paisa (Cerro Nutibara), Unidad Deportiva de Belén",
+    "actividades": "Subida a pie al Cerro Nutibara, natación y ciclismo"
+  },
+  "Guayabal": {
+    "nombre": "Guayabal",
+    "descripcion": "Zona industrial, de parques interactivos y eventos masivos.",
+    "eventos": "Festival de tecnología, arte y robótica",
+    "lugares": "Parque Explora / Parque de las Chimeneas, Plaza Mayor cercanías, Club Comfenalco",
+    "actividades": "Eventos de innovación, karting y ferias empresariales"
+  },
+  "El_poblado": {
+    "nombre": "El Poblado",
+    "descripcion": "Zona gastronómica, nocturna y de parques al suroriente.",
+    "eventos": "Concierto acústico en Provenza (Hoy 8:00 PM)",
+    "lugares": "Parque Lleras, Mercado del Río, Parque El Virrey",
+    "actividades": "Ruta del café y tour gastronómico"
+  }
+}

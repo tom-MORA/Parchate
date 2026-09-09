@@ -14,28 +14,40 @@ if (contenedorMapa) {
 }
 
 // 2. FUNCIÓN PARA CARGAR Y MOSTRAR LOS DATOS DE LA COMUNA
-function cargarDatosComuna(comunaKey) {
+async function cargarDatosComuna(comunaKey) {
     const tarjetaContenedor = document.getElementById("eventos_prin");
     if (tarjetaContenedor) {
         tarjetaContenedor.style.display = "block";
     }
 
-    const datos = window.datosComunas ? window.datosComunas[comunaKey] : null;
+    // Mensaje visual de carga
+    document.getElementById("nombre-comuna").textContent = "Cargando...";
+    document.getElementById("info-comuna").textContent = "Obteniendo datos del servidor...";
 
-    if (datos) {
+    try {
+        // Petición a la API que acabamos de probar
+        const respuesta = await fetch(`http://localhost:3000/api/infocomunas/${comunaKey}`);
+        
+        if (!respuesta.ok) {
+            throw new Error("Comuna no encontrada en el servidor");
+        }
+
+        const datos = await respuesta.json();
+
+        // Pintar la información real entregada por la API
         document.getElementById("nombre-comuna").textContent = datos.nombre;
         document.getElementById("info-comuna").textContent = datos.descripcion;
         document.getElementById("eventos-comuna").textContent = datos.eventos;
         document.getElementById("lugares-comuna").textContent = datos.lugares;
         document.getElementById("actividades-comuna").textContent = datos.actividades;
-    } else {
-        document.getElementById("nombre-comuna").textContent = comunaKey;
-        document.getElementById("info-comuna").textContent = "Sin información disponible por ahora.";
-        document.getElementById("eventos-comuna").textContent = "Próximamente...";
-        document.getElementById("lugares-comuna").textContent = "Próximamente...";
-        document.getElementById("actividades-comuna").textContent = "Próximamente...";
+
+    } catch (error) {
+        console.error("Error al obtener la comuna:", error);
+        document.getElementById("nombre-comuna").textContent = "Error";
+        document.getElementById("info-comuna").textContent = "No se pudo conectar con el servidor.";
     }
 
+    // Configurar botón Ver más
     const btnVerMas = document.getElementById("ver-mas");
     if (btnVerMas) {
         btnVerMas.onclick = () => {
@@ -43,7 +55,7 @@ function cargarDatosComuna(comunaKey) {
         };
     }
 
-    // Baja suavemente y centra la tarjeta en pantalla
+    // Desplazamiento fluido
     tarjetaContenedor.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
