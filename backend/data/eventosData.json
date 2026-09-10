@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "titulo": "Noche de Tango y Milonga",
+    "comuna": "Manrique",
+    "fecha": "2026-09-20",
+    "lugar": "Casa Cultural Gardeliana",
+    "requiereTicket": false,
+    "precio": "Entrada Libre",
+    "descripcion": "Disfruta de una noche tradicional de tango en vivo."
+  },
+  {
+    "id": 2,
+    "titulo": "Torneo 3x3 Básquetbol",
+    "comuna": "Laureles_Estadio",
+    "fecha": "2026-09-25",
+    "lugar": "Unidad Deportiva Atanasio Girardot",
+    "requiereTicket": true,
+    "precio": "$ 15.000",
+    "descripcion": "Competencia rápida de baloncesto urbano."
+  }
+]

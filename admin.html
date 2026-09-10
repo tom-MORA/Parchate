@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÁRCHATE - Panel Admin</title>
+    <link rel="stylesheet" href="Estilos/style1.css">
+    <style>
+        .admin-layout {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .btn-logout {
+            background: #d9534f;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .section-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #f4f4f4;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .form-grid input, .form-grid select, .form-grid textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 100%;
+        }
+        .btn-action {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <div class="admin-header">
+            <h1>Panel de Administración PÁRCHATE</h1>
+            <button class="btn-logout" id="btn-cerrar">Cerrar Sesión</button>
+        </div>
+
+        <!-- SECCIÓN 1: CREAR EVENTO CON O SIN TICKET -->
+        <div class="section-card">
+            <h2>Gestión de Eventos / Ticketera</h2>
+            <form id="form-crear-evento">
+                <div class="form-grid">
+                    <input type="text" id="titulo" placeholder="Título del Evento" required>
+                    <select id="comuna" required>
+                        <option value="">Selecciona Comuna</option>
+                        <option value="Popular">Popular</option>
+                        <option value="Manrique">Manrique</option>
+                        <option value="Aranjuez">Aranjuez</option>
+                        <option value="Castilla">Castilla</option>
+                        <option value="Robledo">Robledo</option>
+                        <option value="Laureles_Estadio">Laureles-Estadio</option>
+                        <option value="San_javier">San Javier</option>
+                        <option value="El_poblado">El Poblado</option>
+                        <option value="Belen">Belén</option>
+                    </select>
+                    <input type="date" id="fecha" required>
+                    <input type="text" id="lugar" placeholder="Lugar (ej: Parque Lleras)" required>
+                    <select id="requiereTicket">
+                        <option value="false">Entrada Libre (Sin Ticket)</option>
+                        <option value="true">Requiere Ticket (Con Costo)</option>
+                    </select>
+                    <input type="text" id="precio" placeholder="Precio (ej: $20.000)">
+                </div>
+                <textarea id="descripcion" placeholder="Descripción breve del evento" rows="3" style="width:100%; margin-top:15px;"></textarea>
+                <button type="submit" class="btn-action">Guardar Evento</button>
+            </form>
+
+            <h3 style="margin-top: 30px;">Eventos Creados</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Comuna</th>
+                        <th>Lugar</th>
+                        <th>Tipo</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-eventos">
+                    <!-- Se carga dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECCIÓN 2: BANDEJA DE MENSAJES DE CONTACTO -->
+        <div class="section-card">
+            <h2>Mensajes de Contacto Recibidos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Mensaje</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-mensajes">
+                    <!-- Se carga dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="Logica/admin.js"></script>
+
+</body>
+</html>

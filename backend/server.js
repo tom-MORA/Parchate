@@ -9,9 +9,13 @@ app.use(express.json());
 
 // Importar rutas
 const comunasRoutes = require('./routes/infocomunas');
+const contactoRoutes = require('./routes/contacto');
+const eventosRoutes = require('./routes/eventos');
 
-// Usar rutas de la API
+// Usar rutas
 app.use('/api/infoComunas', comunasRoutes);
+app.use('/api/contacto', contactoRoutes);
+app.use('/api/eventos', eventosRoutes);
 
 // Ruta base de prueba
 app.get('/', (req, res) => {

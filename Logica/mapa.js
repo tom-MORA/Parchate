@@ -177,9 +177,34 @@ if (aiBtn && aiChatBox && aiCloseBtn) {
 const formContacto = document.getElementById("form-contacto");
 
 if (formContacto) {
-    formContacto.addEventListener("submit", (e) => {
+    formContacto.addEventListener("submit", async (e) => {
         e.preventDefault();
-        alert("¡Gracias por escribirnos! Tu mensaje ha sido enviado correctamente.");
-        formContacto.reset();
+
+        const inputs = formContacto.querySelectorAll("input, textarea");
+        const nombre = inputs[0].value;
+        const email = inputs[1].value;
+        const mensaje = inputs[2].value;
+
+        try {
+            const respuesta = await fetch("http://localhost:3000/api/contacto", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ nombre, email, mensaje })
+            });
+
+            const resultado = await respuesta.json();
+
+            if (respuesta.ok) {
+                alert("¡Gracias por escribirnos! Tu mensaje se guardó en el servidor.");
+                formContacto.reset();
+            } else {
+                alert("Error: " + resultado.error);
+            }
+        } catch (error) {
+            console.error("Error al enviar formulario:", error);
+            alert("No se pudo conectar con el servidor.");
+        }
     });
 }
