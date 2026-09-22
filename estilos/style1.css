@@ -218,7 +218,7 @@ body {
    SECCIÓN MAPA & SELECTOR MÓVIL
 ========================= */
 #mapa h2, #eventos-destacados h2, #contacto h2 {
-  font-size: 36px; /* Títulos de secciones más grandes y prominentes */
+  font-size: 36px;
   font-weight: 800;
   color: var(--texto-blanco);
   margin-bottom: 10px;
@@ -258,6 +258,33 @@ body {
   width: 100%;
   max-width: 800px;
   height: auto;
+}
+
+/* 1. Aplica SOLO a los paths con la clase "comuna-shape" */
+.contenedor-svg-mapa svg path.comuna-shape {
+    fill: #F4ECD8; /* Base crema */
+    stroke: #FF6F59; /* Borde original */
+    stroke-width: 1.5px;
+    transition: fill 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+/* 2. Color mientras pasa el cursor por encima SOLO en comunas */
+.contenedor-svg-mapa svg path.comuna-shape:hover {
+    fill: #F4A261 !important; /* Naranja cálido */
+}
+
+/* 3. Comuna seleccionada */
+.contenedor-svg-mapa svg path.comuna-shape.activa, 
+.contenedor-svg-mapa svg path.comuna-shape.selected {
+    fill: #00D2FF !important; /* Cyan Neón PÁRCHATE */
+    stroke: #ffffff !important;
+}
+
+/* Respetar texto y río intactos */
+.contenedor-svg-mapa svg text, 
+.contenedor-svg-mapa svg .rio-medellin {
+    pointer-events: none; /* Evita que el cursor interfiera al pasar por la letra */
 }
 
 /* =========================
