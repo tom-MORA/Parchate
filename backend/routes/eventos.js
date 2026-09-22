@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
     });
 });
 
-// Crear evento (Con o sin ticket)
+// Crear evento completo
 router.post('/', (req, res) => {
-    const { titulo, comuna, fecha, lugar, requiereTicket, precio, descripcion } = req.body;
+    const { titulo, comuna, categoria, fecha, hora, lugar, requiereTicket, precio, cupos, descripcion } = req.body;
 
     if (!titulo || !comuna || !lugar) {
         return res.status(400).json({ error: 'Título, comuna y lugar son obligatorios' });
@@ -25,16 +25,19 @@ router.post('/', (req, res) => {
         id: Date.now(),
         titulo,
         comuna,
+        categoria: categoria || "Cultura",
         fecha: fecha || "Por confirmar",
+        hora: hora || "7:00 PM",
         lugar,
-        requiereTicket: requiereTicket || false,
+        requiereTicket: requiereTicket === true || requiereTicket === 'true',
         precio: requiereTicket ? (precio || "$ 0") : "Entrada Libre",
-        descripcion: descripcion || ""
+        cupos: cupos || 50,
+        descripcion: descripcion || "Un gran parche para disfrutar en la comuna."
     };
 
     fs.readFile(rutaArchivo, 'utf8', (err, data) => {
         const eventos = JSON.parse(data || '[]');
-        eventos.push(nuevoEvento);
+        eventos.unshift(nuevoEvento); // Agregar al inicio
 
         fs.writeFile(rutaArchivo, JSON.stringify(eventos, null, 2), (errWrite) => {
             if (errWrite) return res.status(500).json({ error: 'Error al guardar evento' });
@@ -43,10 +46,10 @@ router.post('/', (req, res) => {
     });
 });
 
-// Editar evento
+// Editar evento por ID
 router.put('/:id', (req, res) => {
     const eventoId = Number(req.params.id);
-    const datosActualizados = req.body;
+    const datosNuevos = req.body;
 
     fs.readFile(rutaArchivo, 'utf8', (err, data) => {
         let eventos = JSON.parse(data || '[]');
@@ -56,7 +59,7 @@ router.put('/:id', (req, res) => {
             return res.status(404).json({ error: 'Evento no encontrado' });
         }
 
-        eventos[indice] = { ...eventos[indice], ...datosActualizados };
+        eventos[indice] = { ...eventos[indice], ...datosNuevos };
 
         fs.writeFile(rutaArchivo, JSON.stringify(eventos, null, 2), (errWrite) => {
             if (errWrite) return res.status(500).json({ error: 'Error al actualizar evento' });

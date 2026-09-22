@@ -5,153 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PÁRCHATE - Panel Admin</title>
     <link rel="stylesheet" href="Estilos/style1.css">
-    <style>
-        .admin-layout {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .btn-logout {
-            background: #d9534f;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .section-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background: #f4f4f4;
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .form-grid input, .form-grid select, .form-grid textarea {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            width: 100%;
-        }
-        .btn-action {
-            padding: 10px 20px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="Estilos/admin.css">
 </head>
 <body>
 
+    <nav id="navbar">
+        <div class="logo"><a href="inicio.html">PÁRCHATE</a></div>
+        <div class="botones-auth">
+            <button class="btn-login" id="btn-cerrar">Cerrar Sesión</button>
+        </div>
+    </nav>
+
     <div class="admin-layout">
         <div class="admin-header">
-            <h1>Panel de Administración PÁRCHATE</h1>
-            <button class="btn-logout" id="btn-cerrar">Cerrar Sesión</button>
+            <h1>Panel Administrativo PÁRCHATE</h1>
         </div>
 
-        <!-- SECCIÓN 1: CREAR EVENTO CON O SIN TICKET -->
-        <div class="section-card">
+        <!-- SECCIÓN 1: CREAR / EDITAR EVENTO -->
+        <div class="admin-card">
             <h2>Gestión de Eventos / Ticketera</h2>
             <form id="form-crear-evento">
                 <div class="form-grid">
                     <input type="text" id="titulo" placeholder="Título del Evento" required>
+                    
                     <select id="comuna" required>
-                        <option value="">Selecciona Comuna</option>
-                        <option value="Popular">Popular</option>
-                        <option value="Manrique">Manrique</option>
-                        <option value="Aranjuez">Aranjuez</option>
-                        <option value="Castilla">Castilla</option>
-                        <option value="Robledo">Robledo</option>
-                        <option value="Laureles_Estadio">Laureles-Estadio</option>
-                        <option value="San_javier">San Javier</option>
-                        <option value="El_poblado">El Poblado</option>
-                        <option value="Belen">Belén</option>
+                        <option value="">Selecciona Comuna (Medellín)</option>
+                        <option value="Popular">Comuna 1 - Popular</option>
+                        <option value="Santa_Cruz">Comuna 2 - Santa Cruz</option>
+                        <option value="Manrique">Comuna 3 - Manrique</option>
+                        <option value="Aranjuez">Comuna 4 - Aranjuez</option>
+                        <option value="Castilla">Comuna 5 - Castilla</option>
+                        <option value="Doce_de_Octubre">Comuna 6 - Doce de Octubre</option>
+                        <option value="Robledo">Comuna 7 - Robledo</option>
+                        <option value="Villa_Hermosa">Comuna 8 - Villa Hermosa</option>
+                        <option value="Buenos_Aires">Comuna 9 - Buenos Aires</option>
+                        <option value="La_Candelaria">Comuna 10 - La Candelaria (Centro)</option>
+                        <option value="Laureles_Estadio">Comuna 11 - Laureles - Estadio</option>
+                        <option value="La_America">Comuna 12 - La América</option>
+                        <option value="San_Javier">Comuna 13 - San Javier</option>
+                        <option value="El_Poblado">Comuna 14 - El Poblado</option>
+                        <option value="Guayabal">Comuna 15 - Guayabal</option>
+                        <option value="Belen">Comuna 16 - Belén</option>
                     </select>
+
                     <input type="date" id="fecha" required>
-                    <input type="text" id="lugar" placeholder="Lugar (ej: Parque Lleras)" required>
+                    <input type="text" id="lugar" placeholder="Lugar o Dirección" required>
+                    
                     <select id="requiereTicket">
                         <option value="false">Entrada Libre (Sin Ticket)</option>
                         <option value="true">Requiere Ticket (Con Costo)</option>
                     </select>
-                    <input type="text" id="precio" placeholder="Precio (ej: $20.000)">
+
+                    <!-- Campo con prefijo y sufijo de moneda dinámico -->
+                    <div style="display: flex; align-items: center; background: #0f172a; border: 1px solid var(--borde-suave); border-radius: 10px; padding: 0 12px;">
+                        <span style="color: var(--azul-neon); font-weight: bold; margin-right: 5px;">$</span>
+                        <input type="number" id="precio" placeholder="Precio" min="0" style="border: none !important; padding: 12px 0 !important; background: transparent !important; flex: 1; outline: none;">
+                        <span style="color: var(--texto-mutado); font-size: 12px; font-weight: bold; margin-left: 5px;">COP</span>
+                    </div>
                 </div>
-                <textarea id="descripcion" placeholder="Descripción breve del evento" rows="3" style="width:100%; margin-top:15px;"></textarea>
-                <button type="submit" class="btn-action">Guardar Evento</button>
+
+                <textarea id="descripcion" placeholder="Descripción breve del evento" rows="3" style="width:100%; margin-top:16px; box-sizing: border-box;"></textarea>
+                <button type="submit" class="btn-crear-evento" id="btn-submit-evento">Guardar Evento</button>
             </form>
 
-            <h3 style="margin-top: 30px;">Eventos Creados</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Comuna</th>
-                        <th>Lugar</th>
-                        <th>Tipo</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-eventos">
-                    <!-- Se carga dinámicamente -->
-                </tbody>
-            </table>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 35px; flex-wrap: wrap; gap: 15px;">
+                <h3 style="margin: 0;">Eventos Publicados</h3>
+                
+                <!-- FILTRO SOLO POR COMUNA EN LA BETA -->
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <label for="filtro-comuna" style="font-size: 14px; color: var(--texto-mutado);">Filtrar Comuna:</label>
+                    <select id="filtro-comuna" style="padding: 8px 12px; border-radius: 8px; background: #0f172a; color: #fff; border: 1px solid var(--borde-suave);">
+                        <option value="TODAS">Todas las Comunas</option>
+                        <option value="Popular">Popular</option>
+                        <option value="Santa_Cruz">Santa Cruz</option>
+                        <option value="Manrique">Manrique</option>
+                        <option value="Aranjuez">Aranjuez</option>
+                        <option value="Castilla">Castilla</option>
+                        <option value="Doce_de_Octubre">Doce de Octubre</option>
+                        <option value="Robledo">Robledo</option>
+                        <option value="Villa_Hermosa">Villa Hermosa</option>
+                        <option value="Buenos_Aires">Buenos Aires</option>
+                        <option value="La_Candelaria">La Candelaria</option>
+                        <option value="Laureles_Estadio">Laureles - Estadio</option>
+                        <option value="La_America">La América</option>
+                        <option value="San_Javier">San Javier</option>
+                        <option value="El_Poblado">El Poblado</option>
+                        <option value="Guayabal">Guayabal</option>
+                        <option value="Belen">Belén</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Comuna</th>
+                            <th>Lugar</th>
+                            <th>Tipo</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-eventos">
+                        <!-- Carga dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- SECCIÓN 2: BANDEJA DE MENSAJES DE CONTACTO -->
-        <div class="section-card">
+        <div class="admin-card">
             <h2>Mensajes de Contacto Recibidos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Mensaje</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-mensajes">
-                    <!-- Se carga dinámicamente -->
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Mensaje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-mensajes">
+                        <!-- Carga dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
     <script src="Logica/admin.js"></script>
-
 </body>
 </html>

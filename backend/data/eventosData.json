@@ -17,6 +17,8 @@
     "lugar": "Unidad Deportiva Atanasio Girardot",
     "requiereTicket": true,
     "precio": "$ 15.000",
-    "descripcion": "Competencia rápida de baloncesto urbano."
+    "descripcion": "Competencia rápida de baloncesto urbano.",
+    "categoria": "Cultura",
+    "hora": "7:00 PM"
   }
 ]

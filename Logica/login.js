@@ -11,8 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const formAuth = document.getElementById('form-auth');
     const statusMsg = document.getElementById('status-msg');
 
+    const API_BASE = 'http://localhost:3000/api/usuarios';
     let modoRegistro = false;
 
+    // Alternar pestañas entre Iniciar Sesión y Registro
     if (tabLogin && tabRegister) {
         tabLogin.addEventListener('click', () => {
             modoRegistro = false;
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (groupLegal) groupLegal.style.display = 'none';
             authTitle.textContent = 'Iniciar Sesión';
             authSubtitle.textContent = 'Ingresa tus datos para gestionar o explorar el parche.';
-            btnSubmitText.textContent = 'Ingresar';
+            btnSubmitText.textContent = 'Continuar';
             ocultarMensaje();
         });
 
@@ -43,25 +45,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Procesar el envío del formulario
     if (formAuth) {
-        formAuth.addEventListener('submit', (e) => {
+        formAuth.addEventListener('submit', async (e) => {
             e.preventDefault();
+            console.log("Enviando formulario de autenticación...");
+
             const identificador = document.getElementById('identificador').value.trim();
             const password = document.getElementById('password').value.trim();
 
             if (modoRegistro) {
-                mostrarMensaje('¡Registro exitoso! Tus datos han sido guardados.', 'success');
-                setTimeout(() => tabLogin.click(), 1500);
+                // REGISTRO DE NUEVO USUARIO
+                const nuevoUsuario = {
+                    nombre: document.getElementById('nombre').value.trim(),
+                    usuario: identificador,
+                    email: identificador.includes('@') ? identificador : `${identificador}@parchate.com`,
+                    password: password,
+                    telefono: document.getElementById('telefono').value.trim(),
+                    comunaPref: document.getElementById('comuna-pref').value
+                };
+
+                try {
+                    const res = await fetch(`${API_BASE}/registro`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(nuevoUsuario)
+                    });
+
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        mostrarMensaje('¡Registro exitoso! Ya puedes iniciar sesión.', 'success');
+                        setTimeout(() => tabLogin.click(), 1200);
+                    } else {
+                        mostrarMensaje(data.error || 'Error al registrar el usuario.', 'error');
+                    }
+                } catch (err) {
+                    console.error("Error al registrar:", err);
+                    mostrarMensaje('Error de conexión con el servidor.', 'error');
+                }
+
             } else {
-                // Validación para ingresar al Panel de Administración
-                if ((identificador === 'admin' || identificador === 'admin@parchate.com') && password === '1234') {
-                    localStorage.setItem('adminToken', 'true');
-                    mostrarMensaje('Acceso concedido. Redirigiendo al panel...', 'success');
-                    setTimeout(() => {
-                        window.location.href = 'admin.html';
-                    }, 800);
-                } else {
-                    mostrarMensaje('Credenciales incorrectas. Usa usuario: admin y clave: 1234', 'error');
+                // INICIO DE SESIÓN DESDE BASE DE DATOS
+                try {
+                    const res = await fetch(`${API_BASE}/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ identificador, password })
+                    });
+
+                    const data = await res.json();
+                    console.log("Respuesta del servidor:", data);
+
+                    if (res.ok) {
+                        localStorage.setItem('usuarioSesion', JSON.stringify(data.usuario));
+
+                        if (data.usuario.rol === 'admin') {
+                            localStorage.setItem('adminToken', 'true');
+                            mostrarMensaje(`¡Bienvenido Administrador ${data.usuario.nombre}!`, 'success');
+                            setTimeout(() => window.location.href = 'admin.html', 800);
+                        } else {
+                            mostrarMensaje(`¡Bienvenido ${data.usuario.nombre}!`, 'success');
+                            setTimeout(() => window.location.href = 'inicio.html', 800);
+                        }
+                    } else {
+                        mostrarMensaje(data.error || 'Usuario o contraseña incorrectos.', 'error');
+                    }
+                } catch (err) {
+                    console.error("Error al conectar:", err);
+                    mostrarMensaje('Error al conectar con el servidor (Asegúrate de ejecutar node server.js).', 'error');
                 }
             }
         });
@@ -76,8 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function ocultarMensaje() {
-        if (statusMsg) {
-            statusMsg.style.display = 'none';
-        }
+        if (statusMsg) statusMsg.style.display = 'none';
     }
 });

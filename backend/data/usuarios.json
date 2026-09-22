@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "nombre": "Mora",
+        "email": "admin1@parchate.com",
+        "usuario": "Mora",
+        "password": "1020",
+        "rol": "admin",
+        "comunaPref": "Laureles_Estadio",
+        "telefono": "3000000000"
+    },
+    {
+        "id": 2,
+        "nombre": "Toro",
+        "email": "admin2@parchate.com",
+        "usuario": "Toro",
+        "password": "3040",
+        "rol": "admin",
+        "comunaPref": "Aranjuez",
+        "telefono": "3001231425"
+    }
+]
