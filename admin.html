@@ -1,219 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PÁRCHATE — Panel de Control Admin</title>
-  <link rel="stylesheet" href="estilos/style-admin.css">
-  <!-- Íconos de Boxicons para el Sidebar -->
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PÁRCHATE — Panel de Control Administrador</title>
+    <link rel="stylesheet" href="estilos/admin.css">
+    <link rel="stylesheet" href="estilos/style-admin.css">
 </head>
 <body class="admin-body">
 
-  <div class="dashboard-container">
-    
-    <!-- 1. SIDEBAR LATERAL NAVEGACIÓN -->
-    <aside class="sidebar">
-      <div class="sidebar-logo">
-        <i class='bx bxs-zap logo-icon'></i>
-        <span class="logo-text">PÁRCHATE</span>
-      </div>
-
-      <nav class="sidebar-menu">
-        <button class="nav-btn active" onclick="cambiarPestana('metricas')">
-          <i class='bx bx-grid-alt'></i>
-          <span>Métricas</span>
-        </button>
-        <button class="nav-btn" onclick="cambiarPestana('parches')">
-          <i class='bx bx-party'></i>
-          <span>Parches</span>
-        </button>
-        <button class="nav-btn" onclick="cambiarPestana('usuarios')">
-          <i class='bx bx-group'></i>
-          <span>Usuarios</span>
-        </button>
-        <button class="nav-btn" onclick="cambiarPestana('mensajes')">
-          <i class='bx bx-envelope'></i>
-          <span>Mensajes</span>
-        </button>
-      </nav>
-
-      <div class="sidebar-footer">
-        <a href="inicio.html" class="btn-salir">
-          <i class='bx bx-log-out'></i>
-          <span>Volver al Sitio</span>
-        </a>
-      </div>
-    </aside>
-
-    <!-- 2. CONTENIDO PRINCIPAL DEL DASHBOARD -->
-    <main class="main-content">
-      
-      <!-- Topbar Header -->
-      <header class="topbar">
-        <div class="topbar-titulo">
-          <h1 id="titulo-seccion">Métricas Principales</h1>
-          <p>Panel de Administración y Control Territorial</p>
-        </div>
-        <div class="topbar-user">
-          <span class="user-badge"><i class='bx bxs-shield-alt-2'></i> Modo Admin</span>
-        </div>
-      </header>
-
-      <!-- PESTAÑA 1: MÉTRICAS / KPIS -->
-      <section id="seccion-metricas" class="contenido-pestana active">
-        <div class="kpi-grid">
-          <div class="kpi-card">
-            <i class='bx bx-calendar-event kpi-icon cyan'></i>
-            <div>
-              <h3>Total Parches</h3>
-              <p id="kpi-total-eventos">0</p>
+    <div class="admin-dashboard">
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <h2>PÁRCHATE</h2>
             </div>
-          </div>
-          <div class="kpi-card">
-            <i class='bx bx-user-check kpi-icon magenta'></i>
+
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" onclick="cambiarPestana('metricas')">
+                    <span>📊</span> Métricas
+                </button>
+                <button class="nav-btn" onclick="cambiarPestana('parches')">
+                    <span>🎉</span> Parches
+                </button>
+                <button class="nav-btn" onclick="cambiarPestana('usuarios')">
+                    <span>👥</span> Usuarios
+                </button>
+                <button class="nav-btn" onclick="cambiarPestana('mensajes')">
+                    <span>📩</span> Mensajes
+                </button>
+            </nav>
+
             <div>
-              <h3>Usuarios Registrados</h3>
-              <p id="kpi-total-usuarios">0</p>
+                <a href="inicio.html" class="btn-salir-admin">⬅️ Volver al Sitio</a>
             </div>
-          </div>
-          <div class="kpi-card">
-            <i class='bx bx-map-pin kpi-icon naranja'></i>
-            <div>
-              <h3>Comuna Más Activa</h3>
-              <p id="kpi-comuna-top">Cargando...</p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </aside>
 
-      <!-- PESTAÑA 2: GESTIÓN DE PARCHES (EVENTOS) -->
-      <section id="seccion-parches" class="contenido-pestana">
-        <div class="section-header">
-          <h2>Lista de Parches Publicados</h2>
-          <button class="btn-neon" onclick="abrirModalCrear()">+ Nuevo Parche</button>
-        </div>
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER SUPERIOR -->
+            <header class="top-header">
+                <h1 id="titulo-seccion">Métricas Principales</h1>
+                <div class="user-badge">
+                    ⚡ Modo Admin Activo
+                </div>
+            </header>
 
-        <div class="tabla-contenedor">
-          <table class="tabla-neon">
-            <thead>
-              <tr>
-                <th>Evento</th>
-                <th>Comuna</th>
-                <th>Fecha</th>
-                <th>Precio</th>
-                <th>Aforo</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="tabla-parches-body">
-              <!-- Se llena desde JS -->
-            </tbody>
-          </table>
-        </div>
-      </section>
+            <!-- SECCIÓN 1: MÉTRICAS / KPIS -->
+            <section id="seccion-metricas" class="contenido-pestana active">
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span>📅</span>
+                        <h4>TOTAL PARCHES</h4>
+                        <p id="kpi-total-eventos" class="kpi-valor">0</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span>👥</span>
+                        <h4>USUARIOS REGISTRADOS</h4>
+                        <p id="kpi-total-usuarios" class="kpi-valor">0</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span>📍</span>
+                        <h4>COMUNA TOP</h4>
+                        <p id="kpi-comuna-top" class="kpi-valor destacado">Cargando...</p>
+                    </div>
+                </div>
+            </section>
 
-      <!-- PESTAÑA 3: GESTIÓN DE USUARIOS Y FIDELIDAD -->
-      <section id="seccion-usuarios" class="contenido-pestana">
-        <h2>Gestión de Parcheros y Niveles de Fidelidad</h2>
-        <div class="tabla-contenedor">
-          <table class="tabla-neon">
-            <thead>
-              <tr>
-                <th>Usuario</th>
-                <th>Correo</th>
-                <th>Comuna Fav.</th>
-                <th>Boletas Compradas</th>
-                <th>Rango de Fidelidad</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="tabla-usuarios-body">
-              <!-- Se llena desde JS -->
-            </tbody>
-          </table>
-        </div>
-      </section>
+            <!-- SECCIÓN 2: GESTIÓN DE PARCHES -->
+            <section id="seccion-parches" class="contenido-pestana">
+                <div class="header-acciones">
+                    <h2>Lista de Parches Publicados</h2>
+                    <button class="btn-neon" onclick="abrirModalCrear()">+ Nuevo Parche</button>
+                </div>
 
-      <!-- PESTAÑA 4: BANDEJA DE MENSAJES -->
-      <section id="seccion-mensajes" class="contenido-pestana">
-        <h2>Mensajes de Contacto</h2>
-        <div id="contenedor-mensajes">
-          <!-- Mensajes dinámicos -->
-        </div>
-      </section>
+                <div class="tabla-container">
+                    <table class="tabla-admin">
+                        <thead>
+                            <tr>
+                                <th>EVENTO</th>
+                                <th>CATEGORÍA</th>
+                                <th>COMUNA</th>
+                                <th>FECHA</th>
+                                <th>PRECIO</th>
+                                <th>AFORO / RESERVAS</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-parches-body">
+                            <!-- Carga dinámica -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-    </main>
-  </div>
+            <!-- SECCIÓN 3: GESTIÓN DE USUARIOS -->
+            <section id="seccion-usuarios" class="contenido-pestana">
+                <h2 class="titulo-seccion-tabla">Lista de Parcheros y Fidelidad</h2>
+                <div class="tabla-container">
+                    <table class="tabla-admin">
+                        <thead>
+                            <tr>
+                                <th>NOMBRE</th>
+                                <th>EMAIL</th>
+                                <th>COMUNA FAVORITA</th>
+                                <th>BOLETAS</th>
+                                <th>RANGO FIDELIDAD</th>
+                                <th>ROL</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-usuarios-body">
+                            <!-- Carga dinámica -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-  <!-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN -->
-  <div id="modal-confirmar" class="modal-overlay">
-    <div class="modal-box">
-      <i class='bx bx-error-circle modal-icon-warn'></i>
-      <h3>¿Eliminar este Parche?</h3>
-      <p>Esta acción no se puede deshacer y eliminará el evento de la plataforma.</p>
-      <div class="modal-actions">
-        <button class="btn-cancelar" onclick="cerrarModalConfirmar()">Cancelar</button>
-        <button id="btn-confirmar-eliminar" class="btn-eliminar-confirm">Sí, Eliminar</button>
-      </div>
+            <!-- SECCIÓN 4: BANDEJA DE MENSAJES -->
+            <section id="seccion-mensajes" class="contenido-pestana">
+                <h2 class="titulo-seccion-tabla">Bandeja de Contacto</h2>
+                <div id="contenedor-mensajes">
+                    <!-- Carga dinámica -->
+                </div>
+            </section>
+        </main>
     </div>
-  </div>
 
-  <!-- MODAL FORMULARIO PARCHE (CREAR / EDITAR) -->
-<div id="modal-parche" class="modal-overlay">
-  <div class="modal-box" style="max-width: 500px; text-align: left;">
-    <h3 id="modal-parche-titulo" style="color:#00D2FF; margin-top:0;">+ Nuevo Parche</h3>
-    <form id="form-crear-parche">
-      <div style="margin-bottom:12px;">
-        <label style="color:#aaa; font-size:12px;">Título del Evento</label>
-        <input type="text" id="p-titulo" required style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
-      </div>
-      <div style="display:flex; gap:10px; margin-bottom:12px;">
-        <div style="flex:1;">
-          <label style="color:#aaa; font-size:12px;">Comuna</label>
-                <select id="p-comuna" required style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
-                    <option value="Popular">Comuna 1 - Popular</option>
-                    <option value="Santa_Cruz">Comuna 2 - Santa Cruz</option>
-                    <option value="Manrique">Comuna 3 - Manrique</option>
-                    <option value="Aranjuez">Comuna 4 - Aranjuez</option>
-                    <option value="Castilla">Comuna 5 - Castilla</option>
-                    <option value="Doce_de_Octubre">Comuna 6 - Doce de Octubre</option>
-                    <option value="Robledo">Comuna 7 - Robledo</option>
-                    <option value="Villa_Hermosa">Comuna 8 - Villa Hermosa</option>
-                    <option value="Buenos_Aires">Comuna 9 - Buenos Aires</option>
-                    <option value="La_Candelaria">Comuna 10 - La Candelaria (Centro)</option>
-                    <option value="Laureles_Estadio">Comuna 11 - Laureles Estadio</option>
-                    <option value="La_América">Comuna 12 - La América</option>
-                    <option value="San_Javier">Comuna 13 - San Javier</option>
-                    <option value="El_Poblado">Comuna 14 - El Poblado</option>
-                    <option value="Guayabal">Comuna 15 - Guayabal</option>
-                    <option value="Belén">Comuna 16 - Belén</option>
-                </select>
-        </div>
-        <div style="flex:1;">
-          <label style="color:#aaa; font-size:12px;">Fecha</label>
-          <input type="date" id="p-fecha" required style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
-        </div>
-      </div>
-      <div style="display:flex; gap:10px; margin-bottom:12px;">
-        <div style="flex:1;">
-          <label style="color:#aaa; font-size:12px;">Precio ($ COP o 0 para Gratis)</label>
-          <input type="text" id="p-precio" placeholder="Ej: 15000" style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
-        </div>
-        <div style="flex:1;">
-          <label style="color:#aaa; font-size:12px;">Aforo (Cupos)</label>
-          <input type="text" id="p-aforo" placeholder="Ej: 50 personas" style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
-        </div>
-      </div>
-      <div class="modal-actions" style="justify-content:flex-end;">
-        <button type="button" class="btn-cancelar" onclick="cerrarModalParche()">Cancelar</button>
-        <button type="submit" class="btn-neon">Guardar Parche</button>
-      </div>
-    </form>
-  </div>
-</div>
+    <!-- MODAL FORMULARIO PARCHE EXTENDIDO Y AMPLIADO -->
+    <div id="modal-parche" class="modal-overlay">
+        <div class="modal-box-ampliado">
+            
+            <div class="modal-header">
+                <h3 id="modal-parche-titulo">+ Nuevo Parche Completo</h3>
+                <button type="button" class="btn-cerrar-modal" onclick="cerrarModalParche()">×</button>
+            </div>
+            
+            <form id="form-crear-parche" style="display:flex; flex-direction:column; gap:14px;">
+                
+                <!-- Fila 1: Título y Categoría -->
+                <div class="form-grid-flex">
+                    <div class="form-field flex-2">
+                        <label class="form-label">Título del Evento</label>
+                        <input type="text" id="p-titulo" class="form-control" required placeholder="Ej: Torneo 3x3 Baloncesto">
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Categoría (10 Opciones)</label>
+                        <select id="p-categoria" class="form-control" required>
+                            <option value="Cultura">🎭 Cultura y Teatro</option>
+                            <option value="Deporte">⚽ Deporte y Fitness</option>
+                            <option value="Música">🎵 Música y Conciertos</option>
+                            <option value="Gastronomía">🍕 Gastronomía y Ferias</option>
+                            <option value="Tecnología">💻 Tecnología e Innovación</option>
+                            <option value="Social">🎉 Festivales y Social</option>
+                            <option value="Arte">🎨 Arte y Cine</option>
+                            <option value="Emprendimiento">💼 Emprendimiento y Mercados</option>
+                            <option value="Bienestar">🧘 Bienestar y Salud</option>
+                            <option value="Educación">📚 Educación y Talleres</option>
+                        </select>
+                    </div>
+                </div>
 
-  <script src="Logica/admin.js"></script>
+                <!-- Fila 2: Comuna y Fecha/Hora -->
+                <div class="form-grid-flex">
+                    <div class="form-field">
+                        <label class="form-label">Comuna Oficial</label>
+                        <select id="p-comuna" class="form-control" required>
+                            <option value="Popular">Comuna 1 - Popular</option>
+                            <option value="Santa_Cruz">Comuna 2 - Santa Cruz</option>
+                            <option value="Manrique">Comuna 3 - Manrique</option>
+                            <option value="Aranjuez">Comuna 4 - Aranjuez</option>
+                            <option value="Castilla">Comuna 5 - Castilla</option>
+                            <option value="Doce_de_Octubre">Comuna 6 - Doce de Octubre</option>
+                            <option value="Robledo">Comuna 7 - Robledo</option>
+                            <option value="Villa_Hermosa">Comuna 8 - Villa Hermosa</option>
+                            <option value="Buenos_Aires">Comuna 9 - Buenos Aires</option>
+                            <option value="La_Candelaria">Comuna 10 - La Candelaria</option>
+                            <option value="Laureles_Estadio">Comuna 11 - Laureles Estadio</option>
+                            <option value="La_América">Comuna 12 - La América</option>
+                            <option value="San_Javier">Comuna 13 - San Javier</option>
+                            <option value="El_Poblado">Comuna 14 - El Poblado</option>
+                            <option value="Guayabal">Comuna 15 - Guayabal</option>
+                            <option value="Belén">Comuna 16 - Belén</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Fecha y Hora</label>
+                        <input type="text" id="p-fecha" class="form-control" required placeholder="Ej: 2026-11-15 15:00">
+                    </div>
+                </div>
+
+                <!-- Fila 3: Ubicación y Drag & Drop Foto -->
+                <div class="form-grid-2col">
+                    <div>
+                        <label class="form-label">Ubicación Exacta (Google Maps)</label>
+                        <input type="text" id="p-ubicacion" class="form-control" required placeholder="Ej: Parque de los Deseos, Medellín">
+                        
+                        <div style="margin-top:10px;">
+                            <label class="form-label">Precio ($ COP o 0 para Gratis)</label>
+                            <input type="text" id="p-precio" class="form-control" placeholder="Ej: 15000">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Imagen / Banner del Parche</label>
+                        <div id="drop-zone-foto" class="drop-zone-foto">
+                            <span style="font-size:20px;">📁</span>
+                            <span style="font-size:11px; color:#00D2FF; margin-top:2px;">Arrastra la foto o haz clic</span>
+                            <input type="file" id="p-file-input" accept="image/*" style="display:none;">
+                            <input type="hidden" id="p-imagen-val">
+                        </div>
+                        <div id="preview-foto-container" class="preview-foto-box">
+                            <img id="img-preview" src="" alt="Vista previa" class="img-preview-thumb">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fila 4: Checkbox Sin Aforo -->
+                <div class="box-aforo-row">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <input type="checkbox" id="p-sin-aforo" onchange="toggleAforoInput(this)">
+                        <label for="p-sin-aforo" style="color:#fff; font-size:12px; cursor:pointer;"><strong>Sin límite de aforo</strong> (Entrada libre / Masivo)</label>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <label class="form-label" style="margin:0;">Cupos:</label>
+                        <input type="number" id="p-aforo" class="form-control" placeholder="100" style="width:80px; padding:6px;">
+                    </div>
+                </div>
+
+                <!-- Fila 5: Descripción -->
+                <div>
+                    <label class="form-label">Descripción del Parche</label>
+                    <textarea id="p-descripcion" class="form-control" rows="2" placeholder="Explica los detalles del evento..."></textarea>
+                </div>
+
+                <!-- Fila 6: Requisitos -->
+                <div>
+                    <label class="form-label">Requisitos o Recomendaciones (separados por coma)</label>
+                    <input type="text" id="p-requisitos" class="form-control" placeholder="Ej: Documento original, Llegar 15 min antes, Ropa cómoda">
+                </div>
+
+                <!-- Botones de Acción -->
+                <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:4px;">
+                    <button type="button" class="btn-cancelar" onclick="cerrarModalParche()">Cancelar</button>
+                    <button type="submit" class="btn-neon">Guardar Parche</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIRMAR ELIMINACIÓN -->
+    <div id="modal-confirmar" class="modal-overlay">
+        <div class="modal-box-ampliado" style="max-width:360px; text-align:center;">
+            <h3 style="color:#ef4444; margin-top:0;">¿Eliminar este parche?</h3>
+            <p style="color:#aaa; font-size:13px;">Esta acción borrará el evento de la base de datos permanentemente.</p>
+            <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
+                <button type="button" class="btn-cancelar" onclick="cerrarModalConfirmar()">Cancelar</button>
+                <button id="btn-confirmar-eliminar" style="background:#ef4444; color:#fff; border:none; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer;">Sí, Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="Logica/admin.js"></script>
 </body>
 </html>

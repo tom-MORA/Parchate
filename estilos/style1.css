@@ -577,3 +577,64 @@ body {
     font-size: 42px;
   }
 }
+
+/* ==========================================
+   VENTANA MÁS GRANDE Y CHIPS DE SUGERENCIAS EN IA
+   ========================================== */
+#bot-chat-window.bot-chat-grande {
+  width: 380px;
+  height: 520px;
+  bottom: 95px;
+  right: 24px;
+  border-radius: 20px;
+  background: #121622;
+  border: 1px solid rgba(0, 210, 255, 0.4);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+.bot-sugerencias {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  background: #0d1019;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  scrollbar-width: thin;
+}
+
+.bot-sugerencias::-webkit-scrollbar {
+  height: 4px;
+}
+
+.bot-sugerencias::-webkit-scrollbar-thumb {
+  background: rgba(0, 210, 255, 0.3);
+  border-radius: 4px;
+}
+
+.chip-sugerencia {
+  background: rgba(0, 210, 255, 0.1);
+  color: #00D2FF;
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip-sugerencia:hover {
+  background: #00D2FF;
+  color: #000;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  #bot-chat-window.bot-chat-grande {
+    width: 90vw;
+    height: 75vh;
+    right: 5vw;
+    bottom: 85px;
+  }
+}
