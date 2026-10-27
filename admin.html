@@ -1,141 +1,219 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PÁRCHATE - Panel Admin</title>
-    <link rel="stylesheet" href="Estilos/style1.css">
-    <link rel="stylesheet" href="Estilos/admin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PÁRCHATE — Panel de Control Admin</title>
+  <link rel="stylesheet" href="estilos/style-admin.css">
+  <!-- Íconos de Boxicons para el Sidebar -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="admin-body">
 
-    <nav id="navbar">
-        <div class="logo"><a href="inicio.html">PÁRCHATE</a></div>
-        <div class="botones-auth">
-            <button class="btn-login" id="btn-cerrar">Cerrar Sesión</button>
+  <div class="dashboard-container">
+    
+    <!-- 1. SIDEBAR LATERAL NAVEGACIÓN -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <i class='bx bxs-zap logo-icon'></i>
+        <span class="logo-text">PÁRCHATE</span>
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="nav-btn active" onclick="cambiarPestana('metricas')">
+          <i class='bx bx-grid-alt'></i>
+          <span>Métricas</span>
+        </button>
+        <button class="nav-btn" onclick="cambiarPestana('parches')">
+          <i class='bx bx-party'></i>
+          <span>Parches</span>
+        </button>
+        <button class="nav-btn" onclick="cambiarPestana('usuarios')">
+          <i class='bx bx-group'></i>
+          <span>Usuarios</span>
+        </button>
+        <button class="nav-btn" onclick="cambiarPestana('mensajes')">
+          <i class='bx bx-envelope'></i>
+          <span>Mensajes</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="inicio.html" class="btn-salir">
+          <i class='bx bx-log-out'></i>
+          <span>Volver al Sitio</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- 2. CONTENIDO PRINCIPAL DEL DASHBOARD -->
+    <main class="main-content">
+      
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="topbar-titulo">
+          <h1 id="titulo-seccion">Métricas Principales</h1>
+          <p>Panel de Administración y Control Territorial</p>
         </div>
-    </nav>
-
-    <div class="admin-layout">
-        <div class="admin-header">
-            <h1>Panel Administrativo PÁRCHATE</h1>
+        <div class="topbar-user">
+          <span class="user-badge"><i class='bx bxs-shield-alt-2'></i> Modo Admin</span>
         </div>
+      </header>
 
-        <!-- SECCIÓN 1: CREAR / EDITAR EVENTO -->
-        <div class="admin-card">
-            <h2>Gestión de Eventos / Ticketera</h2>
-            <form id="form-crear-evento">
-                <div class="form-grid">
-                    <input type="text" id="titulo" placeholder="Título del Evento" required>
-                    
-                    <select id="comuna" required>
-                        <option value="">Selecciona Comuna (Medellín)</option>
-                        <option value="Popular">Comuna 1 - Popular</option>
-                        <option value="Santa_Cruz">Comuna 2 - Santa Cruz</option>
-                        <option value="Manrique">Comuna 3 - Manrique</option>
-                        <option value="Aranjuez">Comuna 4 - Aranjuez</option>
-                        <option value="Castilla">Comuna 5 - Castilla</option>
-                        <option value="Doce_de_Octubre">Comuna 6 - Doce de Octubre</option>
-                        <option value="Robledo">Comuna 7 - Robledo</option>
-                        <option value="Villa_Hermosa">Comuna 8 - Villa Hermosa</option>
-                        <option value="Buenos_Aires">Comuna 9 - Buenos Aires</option>
-                        <option value="La_Candelaria">Comuna 10 - La Candelaria (Centro)</option>
-                        <option value="Laureles_Estadio">Comuna 11 - Laureles - Estadio</option>
-                        <option value="La_America">Comuna 12 - La América</option>
-                        <option value="San_Javier">Comuna 13 - San Javier</option>
-                        <option value="El_Poblado">Comuna 14 - El Poblado</option>
-                        <option value="Guayabal">Comuna 15 - Guayabal</option>
-                        <option value="Belen">Comuna 16 - Belén</option>
-                    </select>
-
-                    <input type="date" id="fecha" required>
-                    <input type="text" id="lugar" placeholder="Lugar o Dirección" required>
-                    
-                    <select id="requiereTicket">
-                        <option value="false">Entrada Libre (Sin Ticket)</option>
-                        <option value="true">Requiere Ticket (Con Costo)</option>
-                    </select>
-
-                    <!-- Campo con prefijo y sufijo de moneda dinámico -->
-                    <div style="display: flex; align-items: center; background: #0f172a; border: 1px solid var(--borde-suave); border-radius: 10px; padding: 0 12px;">
-                        <span style="color: var(--azul-neon); font-weight: bold; margin-right: 5px;">$</span>
-                        <input type="number" id="precio" placeholder="Precio" min="0" style="border: none !important; padding: 12px 0 !important; background: transparent !important; flex: 1; outline: none;">
-                        <span style="color: var(--texto-mutado); font-size: 12px; font-weight: bold; margin-left: 5px;">COP</span>
-                    </div>
-                </div>
-
-                <textarea id="descripcion" placeholder="Descripción breve del evento" rows="3" style="width:100%; margin-top:16px; box-sizing: border-box;"></textarea>
-                <button type="submit" class="btn-crear-evento" id="btn-submit-evento">Guardar Evento</button>
-            </form>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 35px; flex-wrap: wrap; gap: 15px;">
-                <h3 style="margin: 0;">Eventos Publicados</h3>
-                
-                <!-- FILTRO SOLO POR COMUNA EN LA BETA -->
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <label for="filtro-comuna" style="font-size: 14px; color: var(--texto-mutado);">Filtrar Comuna:</label>
-                    <select id="filtro-comuna" style="padding: 8px 12px; border-radius: 8px; background: #0f172a; color: #fff; border: 1px solid var(--borde-suave);">
-                        <option value="TODAS">Todas las Comunas</option>
-                        <option value="Popular">Popular</option>
-                        <option value="Santa_Cruz">Santa Cruz</option>
-                        <option value="Manrique">Manrique</option>
-                        <option value="Aranjuez">Aranjuez</option>
-                        <option value="Castilla">Castilla</option>
-                        <option value="Doce_de_Octubre">Doce de Octubre</option>
-                        <option value="Robledo">Robledo</option>
-                        <option value="Villa_Hermosa">Villa Hermosa</option>
-                        <option value="Buenos_Aires">Buenos Aires</option>
-                        <option value="La_Candelaria">La Candelaria</option>
-                        <option value="Laureles_Estadio">Laureles - Estadio</option>
-                        <option value="La_America">La América</option>
-                        <option value="San_Javier">San Javier</option>
-                        <option value="El_Poblado">El Poblado</option>
-                        <option value="Guayabal">Guayabal</option>
-                        <option value="Belen">Belén</option>
-                    </select>
-                </div>
+      <!-- PESTAÑA 1: MÉTRICAS / KPIS -->
+      <section id="seccion-metricas" class="contenido-pestana active">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <i class='bx bx-calendar-event kpi-icon cyan'></i>
+            <div>
+              <h3>Total Parches</h3>
+              <p id="kpi-total-eventos">0</p>
             </div>
-
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Comuna</th>
-                            <th>Lugar</th>
-                            <th>Tipo</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-eventos">
-                        <!-- Carga dinámicamente -->
-                    </tbody>
-                </table>
+          </div>
+          <div class="kpi-card">
+            <i class='bx bx-user-check kpi-icon magenta'></i>
+            <div>
+              <h3>Usuarios Registrados</h3>
+              <p id="kpi-total-usuarios">0</p>
             </div>
+          </div>
+          <div class="kpi-card">
+            <i class='bx bx-map-pin kpi-icon naranja'></i>
+            <div>
+              <h3>Comuna Más Activa</h3>
+              <p id="kpi-comuna-top">Cargando...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 2: GESTIÓN DE PARCHES (EVENTOS) -->
+      <section id="seccion-parches" class="contenido-pestana">
+        <div class="section-header">
+          <h2>Lista de Parches Publicados</h2>
+          <button class="btn-neon" onclick="abrirModalCrear()">+ Nuevo Parche</button>
         </div>
 
-        <!-- SECCIÓN 2: BANDEJA DE MENSAJES DE CONTACTO -->
-        <div class="admin-card">
-            <h2>Mensajes de Contacto Recibidos</h2>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Mensaje</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-mensajes">
-                        <!-- Carga dinámicamente -->
-                    </tbody>
-                </table>
-            </div>
+        <div class="tabla-contenedor">
+          <table class="tabla-neon">
+            <thead>
+              <tr>
+                <th>Evento</th>
+                <th>Comuna</th>
+                <th>Fecha</th>
+                <th>Precio</th>
+                <th>Aforo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-parches-body">
+              <!-- Se llena desde JS -->
+            </tbody>
+          </table>
         </div>
+      </section>
+
+      <!-- PESTAÑA 3: GESTIÓN DE USUARIOS Y FIDELIDAD -->
+      <section id="seccion-usuarios" class="contenido-pestana">
+        <h2>Gestión de Parcheros y Niveles de Fidelidad</h2>
+        <div class="tabla-contenedor">
+          <table class="tabla-neon">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Correo</th>
+                <th>Comuna Fav.</th>
+                <th>Boletas Compradas</th>
+                <th>Rango de Fidelidad</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-usuarios-body">
+              <!-- Se llena desde JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PESTAÑA 4: BANDEJA DE MENSAJES -->
+      <section id="seccion-mensajes" class="contenido-pestana">
+        <h2>Mensajes de Contacto</h2>
+        <div id="contenedor-mensajes">
+          <!-- Mensajes dinámicos -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN DE ELIMINACIÓN -->
+  <div id="modal-confirmar" class="modal-overlay">
+    <div class="modal-box">
+      <i class='bx bx-error-circle modal-icon-warn'></i>
+      <h3>¿Eliminar este Parche?</h3>
+      <p>Esta acción no se puede deshacer y eliminará el evento de la plataforma.</p>
+      <div class="modal-actions">
+        <button class="btn-cancelar" onclick="cerrarModalConfirmar()">Cancelar</button>
+        <button id="btn-confirmar-eliminar" class="btn-eliminar-confirm">Sí, Eliminar</button>
+      </div>
     </div>
+  </div>
 
-    <script src="Logica/admin.js"></script>
+  <!-- MODAL FORMULARIO PARCHE (CREAR / EDITAR) -->
+<div id="modal-parche" class="modal-overlay">
+  <div class="modal-box" style="max-width: 500px; text-align: left;">
+    <h3 id="modal-parche-titulo" style="color:#00D2FF; margin-top:0;">+ Nuevo Parche</h3>
+    <form id="form-crear-parche">
+      <div style="margin-bottom:12px;">
+        <label style="color:#aaa; font-size:12px;">Título del Evento</label>
+        <input type="text" id="p-titulo" required style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
+      </div>
+      <div style="display:flex; gap:10px; margin-bottom:12px;">
+        <div style="flex:1;">
+          <label style="color:#aaa; font-size:12px;">Comuna</label>
+                <select id="p-comuna" required style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
+                    <option value="Popular">Comuna 1 - Popular</option>
+                    <option value="Santa_Cruz">Comuna 2 - Santa Cruz</option>
+                    <option value="Manrique">Comuna 3 - Manrique</option>
+                    <option value="Aranjuez">Comuna 4 - Aranjuez</option>
+                    <option value="Castilla">Comuna 5 - Castilla</option>
+                    <option value="Doce_de_Octubre">Comuna 6 - Doce de Octubre</option>
+                    <option value="Robledo">Comuna 7 - Robledo</option>
+                    <option value="Villa_Hermosa">Comuna 8 - Villa Hermosa</option>
+                    <option value="Buenos_Aires">Comuna 9 - Buenos Aires</option>
+                    <option value="La_Candelaria">Comuna 10 - La Candelaria (Centro)</option>
+                    <option value="Laureles_Estadio">Comuna 11 - Laureles Estadio</option>
+                    <option value="La_América">Comuna 12 - La América</option>
+                    <option value="San_Javier">Comuna 13 - San Javier</option>
+                    <option value="El_Poblado">Comuna 14 - El Poblado</option>
+                    <option value="Guayabal">Comuna 15 - Guayabal</option>
+                    <option value="Belén">Comuna 16 - Belén</option>
+                </select>
+        </div>
+        <div style="flex:1;">
+          <label style="color:#aaa; font-size:12px;">Fecha</label>
+          <input type="date" id="p-fecha" required style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; margin-bottom:12px;">
+        <div style="flex:1;">
+          <label style="color:#aaa; font-size:12px;">Precio ($ COP o 0 para Gratis)</label>
+          <input type="text" id="p-precio" placeholder="Ej: 15000" style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
+        </div>
+        <div style="flex:1;">
+          <label style="color:#aaa; font-size:12px;">Aforo (Cupos)</label>
+          <input type="text" id="p-aforo" placeholder="Ej: 50 personas" style="width:100%; padding:10px; background:#0f131d; border:1px solid rgba(255,255,255,0.1); color:#fff; border-radius:8px;">
+        </div>
+      </div>
+      <div class="modal-actions" style="justify-content:flex-end;">
+        <button type="button" class="btn-cancelar" onclick="cerrarModalParche()">Cancelar</button>
+        <button type="submit" class="btn-neon">Guardar Parche</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  <script src="Logica/admin.js"></script>
 </body>
 </html>
